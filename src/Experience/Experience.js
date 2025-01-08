@@ -4,6 +4,8 @@ import Sizes from "./Utils/Sizes";
 import Time from "./Utils/Time";
 import Camera from "./Camera";
 import Renderer from "./Renderer";
+import World from "./World/World";
+import Debug from "./Utils/Debug";
 
 let instance = null;
 export default class Experience extends EventEmitter {
@@ -15,10 +17,13 @@ export default class Experience extends EventEmitter {
 		instance = this;
 		window.experience = this;
 		this.canvas = canvas;
+		this.debug = new Debug();
 		this.scene = new THREE.Scene();
 
 		this.sizes = new Sizes();
 		this.time = new Time();
+
+		this.world = new World();
 		this.camera = new Camera();
 
 		this.renderer = new Renderer();
@@ -37,5 +42,8 @@ export default class Experience extends EventEmitter {
 		this.renderer.resizeHandler();
 	}
 
-	updateHandler() {}
+	updateHandler() {
+		this.camera.updateHandler();
+		this.renderer.updateHandler();
+	}
 }
