@@ -9,7 +9,7 @@ export default class WallLeft {
 		this.scene = this.experience.scene;
 		this.wall = new THREE.Mesh(
 			new THREE.PlaneGeometry(constants.wallWidth, constants.wallLength),
-			new THREE.MeshBasicMaterial({
+			new THREE.MeshStandardMaterial({
 				color: constants.wallColor,
 			})
 		);
@@ -26,6 +26,7 @@ export default class WallLeft {
 			this.debugFolder.addColor(constants, "wallColor").onChange((e) => {
 				this.wall.material.color.set(e);
 				this.experience.world.wallFront.wall.material.color.set(e);
+				this.experience.world.window.base.material.color.set(e);
 			});
 		}
 	}

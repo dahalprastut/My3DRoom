@@ -6,11 +6,12 @@ import Camera from "./Camera";
 import Renderer from "./Renderer";
 import World from "./World/World";
 import Debug from "./Utils/Debug";
+import Resources from "./Utils/Resources";
+import sources from "./sources";
 
 let instance = null;
-export default class Experience extends EventEmitter {
+export default class Experience {
 	constructor(canvas) {
-		super();
 		if (instance) {
 			return instance;
 		}
@@ -19,6 +20,7 @@ export default class Experience extends EventEmitter {
 		this.canvas = canvas;
 		this.debug = new Debug();
 		this.scene = new THREE.Scene();
+		this.resouces = new Resources(sources);
 
 		this.sizes = new Sizes();
 		this.time = new Time();

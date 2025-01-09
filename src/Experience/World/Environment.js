@@ -7,9 +7,10 @@ export default class Environment {
 	constructor() {
 		this.experience = new Experience();
 		this.scene = this.experience.scene;
+		this.resources = this.experience.resouces;
 		this.addEnvMap();
-		this.addAmbientLight();
-		this.addBulb();
+		// this.addAmbientLight();
+		// this.addBulb();
 	}
 
 	addAmbientLight() {
@@ -26,10 +27,13 @@ export default class Environment {
 	}
 
 	addEnvMap() {
-		this.rgbeLoader = new RGBELoader();
-		this.rgbeLoader.load("./../../static/environmentmap/2k.hdr", (env) => {
-			env.mapping = THREE.EquirectangularReflectionMapping;
-			this.scene.environment = env;
-		});
+		this.environmentMap = {};
+		this.environmentMap.texture = this.resources.items.EnvironmentTexture;
+		this.scene.environment = this.environmentMap.texture;
+		// this.rgbeLoader = new RGBELoader();
+		// this.rgbeLoader.load("./../../static/environmentmap/lights.hdr", (env) => {
+		// 	env.mapping = THREE.EquirectangularReflectionMapping;
+		// 	this.scene.environment = env;
+		// });
 	}
 }
